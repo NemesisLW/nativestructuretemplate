@@ -10,13 +10,13 @@ const locationSearch = () => {
   const [location, setLocation] = useState({
     latitude: 88.5021,
     longitude: 23.4013,
-    latitudeDelta: 0.02,
-    longitudeDelta: 0.02,
+    latitudeDelta: 0,
+    longitudeDelta: 0,
   });
 
   return (
     <View style={{ flex: 1 }}>
-      <MapView showsUserLocation={false} region={location} />
+      <MapView showsUserLocation={false} style={styles.map} />
       <View style={styles.absoluteBox}>
         <TouchableOpacity
           style={styles.button}
@@ -31,7 +31,8 @@ const locationSearch = () => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
   },
   absoluteBox: {
     position: "absolute",
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.secondary,
     padding: 16,
     margin: 16,
     alignItems: "center",
