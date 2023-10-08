@@ -29,7 +29,7 @@ export default class SwipeableRow extends Component<
   };
 
   render() {
-    const { childern } = this.props;
+    const { children } = this.props;
     return (
       <Swipeable
         ref={this.updateRef}
@@ -39,7 +39,7 @@ export default class SwipeableRow extends Component<
         rightThreshold={40}
         renderRightActions={this.renderRightActions}
       >
-        {childern}
+        {children}
       </Swipeable>
     );
   }

@@ -4,8 +4,9 @@ import useBasketStore from "@/store/basketstore";
 import Colors from "@/constants/Colors";
 import ConfettiCannon from "react-native-confetti-cannon";
 import { Link } from "expo-router";
-import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SwipeableRow from "@/Components/SwipeableRow";
 
 const Basket = () => {
   const [order, setOrder] = useState(false);
@@ -55,7 +56,7 @@ const Basket = () => {
               <View style={{ height: 1, backgroundColor: Colors.skyyblue }} />
             )}
             renderItem={({ item }) => (
-              <Swipeable onCancelled={() => reduceProduct(item)}>
+              <SwipeableRow onDelete={() => reduceProduct(item)}>
                 <View style={styles.row}>
                   <Text style={{ color: Colors.primary, fontSize: 18 }}>
                     {item.quantity}x
@@ -65,7 +66,7 @@ const Basket = () => {
                     ${item.price * item.quantity}
                   </Text>
                 </View>
-              </Swipeable>
+              </SwipeableRow>
             )}
             ListFooterComponent={
               <View>
