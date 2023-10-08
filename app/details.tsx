@@ -20,6 +20,7 @@ import ParallaxScrollView from "@/Components/ParallaxScrollView";
 import useBasketStore from "@/store/basketstore";
 import Colors from "@/constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Search, Share2 } from "lucide-react-native";
 
 const Details = () => {
   const navigation = useNavigation();
@@ -49,7 +50,21 @@ const Details = () => {
   };
 
   useLayoutEffect(() => {
-    navigation.setOptions({});
+    navigation.setOptions({
+      headerTransparent: true,
+      headerTitle: "Details",
+      headerTintColor: Colors.primary,
+      headerRight: () => (
+        <View style={styles.bar}>
+          <TouchableOpacity style={styles.roundButton}>
+            <Share2 size={24} color={Colors.secondary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.roundButton}>
+            <Search size={24} color={Colors.secondary} />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
   }, []);
 
   const selectCategory = (index: number) => {
@@ -62,15 +77,16 @@ const Details = () => {
   };
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => (
-    // <Link href={{ pathname: "/(modal)/dish", params: { id: item.id } }} asChild>
-    <TouchableOpacity style={styles.item}>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.dish}>{item.name}</Text>
-        <Text style={styles.dishText}>{item.info}</Text>
-        <Text style={styles.dishText}>${item.price}</Text>
-      </View>
-      <Image source={item.img} style={styles.dishImage} />
-    </TouchableOpacity>
+    <Link href={{ pathname: "/(modal)/dish", params: { id: item.id } }} asChild>
+      <TouchableOpacity style={styles.item}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.dish}>{item.name}</Text>
+          <Text style={styles.dishText}>{item.info}</Text>
+          <Text style={styles.dishText}>${item.price}</Text>
+        </View>
+        <Image source={item.img} style={styles.dishImage} />
+      </TouchableOpacity>
+    </Link>
   );
 
   //  State Management Functions
@@ -199,7 +215,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.gbeige,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -231,7 +247,7 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   item: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     padding: 16,
     flexDirection: "row",
   },

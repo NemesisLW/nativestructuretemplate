@@ -1,23 +1,5 @@
 import { create } from "zustand";
-
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  info: string;
-  img: any;
-}
-
-export interface BasketState {
-  products: Array<Product & { quantity: number }>;
-  addProduct: (product: Product) => void;
-  reduceProduct: (product: Product) => void;
-  clearCart: () => void;
-  items: number;
-  total: number;
-}
-
-const useBasketStore = create<BasketState>()((set) => ({
+const useBasketStore = create((set) => ({
   products: [],
   items: 0,
   total: 0,
@@ -54,6 +36,25 @@ const useBasketStore = create<BasketState>()((set) => ({
   clearCart: () => set({ products: [], items: 0, total: 0 }),
 }));
 
-export default useBasketStore();
+export default useBasketStore;
 
 // TypeScript is actually useful
+
+// export interface Product {
+//     id: number;
+//     name: string;
+//     price: number;
+//     info: string;
+//     img: any;
+//   }
+
+//   export interface BasketState {
+//     products: Array<Product & { quantity: number }>;
+//     addProduct: (product: Product) => void;
+//     reduceProduct: (product: Product) => void;
+//     clearCart: () => void;
+//     items: number;
+//     total: number;
+//   }
+
+// const useBasketStore = create<BasketState>()((set) => ({
